@@ -18,34 +18,48 @@ class House():
         return self.number_of_floors
 
     def __eq__(self, other):
-        return self.number_of_floors  == other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors == other.number_of_floors
+        return NotImplemented
 
     def __gt__(self, other):
-        return self.number_of_floors > other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors > other.number_of_floors
+        return NotImplemented
 
     def __lt__(self, other):
-        return self.number_of_floors < other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors < other.number_of_floors
+        return NotImplemented
 
     def __le__(self, other):
-        return self.number_of_floors <= other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors <= other.number_of_floors
+        return NotImplemented
 
     def __ge__(self, other):
-        return self.number_of_floors >= other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors >= other.number_of_floors
+        return NotImplemented
 
     def __ne__(self, other):
-        return self.number_of_floors != other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors != other.number_of_floors
+        return NotImplemented
 
     def __add__(self, value):
-        return House(self.name ,self.number_of_floors + value)
+        if isinstance(value, int):
+            return House(self.name, self.number_of_floors + value)
+        return NotImplemented
 
-    def __radd__(self, other):
-        return self.number_of_floors + other.number_of_floors
+    def __radd__(self, value):
+        return self.__add__(value)
 
     def __iadd__(self, value):
-        return House(self.name ,self.number_of_floors + value)
-
-    def __radd__(self, other):
-        return House(self.name ,self.number_of_floors + other)
+        if isinstance(value, int):
+            self.number_of_floors += value
+            return self
+        return NotImplemented
 
 
 h1 = House('ЖК Эльбрус', 10)
